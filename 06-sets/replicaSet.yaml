@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-rs
+  labels:
+    app: nginx-rs
+    tier: frontend
+spec:
+  # modify replicas according to your case
+  replicas: 3
+  selector: # replica-set labels
+    matchLabels:
+      app: nginx-rs
+      tier: frontend
+  template: # pod-definition
+    metadata:
+      labels:
+        app: nginx-rs
+        tier: frontend
+    spec:
+      containers:
+      - name: nginx-rs
+        image: nginx
+      ports:
+        - containerPort: 80
+      
